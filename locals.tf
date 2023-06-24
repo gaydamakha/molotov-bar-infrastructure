@@ -4,4 +4,7 @@ locals {
   account = {
     master = "439575621641"
   }
+  workspaces = {
+    common = "molotov-bar-infrastructure-common"
+  }
 }

@@ -1,7 +1,16 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source                = "hashicorp/aws"
+      configuration_aliases = [aws.master]
+    }
+  }
+
+  backend "remote" {
+    organization = local.org
+
+    workspaces {
+      name = "business-infrastructure-common"
     }
   }
 }
