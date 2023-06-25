@@ -10,7 +10,7 @@ terraform {
     organization = "molotov-bar"
 
     workspaces {
-      name = "business-infrastructure-common"
+      name = "molotov-bar-infrastructure-common"
     }
   }
 }
