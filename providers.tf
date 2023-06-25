@@ -2,7 +2,6 @@ terraform {
   required_providers {
     aws = {
       source                = "hashicorp/aws"
-      # configuration_aliases = [aws.master]
     }
   }
 
@@ -17,7 +16,6 @@ terraform {
 
 provider "aws" {
   region = local.region
-  # alias  = "master"
 
   assume_role {
     role_arn = "arn:aws:iam::${local.account.master}:role/TerraformCloudDeployRole"
