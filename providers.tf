@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "remote" {
-    organization = local.org
+    organization = "molotov-bar"
 
     workspaces {
       name = "business-infrastructure-common"
