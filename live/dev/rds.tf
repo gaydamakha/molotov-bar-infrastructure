@@ -31,6 +31,7 @@ module "db_default" {
 
   instance_class    = "db.t2.micro"
   storage_type      = "gp2"
+  storage_encrypted = false
   allocated_storage = 20
 
   create_db_subnet_group = true
