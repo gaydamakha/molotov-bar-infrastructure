@@ -29,7 +29,7 @@ module "db_default" {
   password                    = random_password.master.result
   port                        = 5432
 
-  instance_class    = "db.t2.micro"
+  instance_class    = "db.t3.micro"
   storage_type      = "gp2"
   storage_encrypted = false
   allocated_storage = 20
