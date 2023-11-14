@@ -4,7 +4,4 @@ locals {
   account = {
     master = "439575621641"
   }
-  registry = {
-    molotov-bar-api  = "molotov-bar-api"
-  }
 }
