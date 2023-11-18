@@ -2,7 +2,7 @@ module "alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "9.2.0"
 
-  name    = "my-alb"
+  name    = "${local.name}-alb"
   vpc_id  = module.vpc.vpc_id
   subnets = module.vpc.public_subnets
 
