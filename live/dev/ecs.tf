@@ -1,6 +1,6 @@
 module "ecs" {
   source  = "terraform-aws-modules/ecs/aws"
-  version = "5.6.0"
+  version = "5.7.2"
   create  = local.enable
 
   cluster_name                          = "${local.name}-cluster"
@@ -38,6 +38,8 @@ module "ecs" {
       # Container definition(s)
       container_definitions = {
         main = {
+          cpu    = 256
+          memory = 512
           image         = "${module.registry.repositories[local.name]}:latest"
           port_mappings = [
             {
