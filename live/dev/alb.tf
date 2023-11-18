@@ -33,30 +33,37 @@ module "alb" {
     }
   }
 
-#  access_logs = {
-#    bucket = "${local.name}-alb-logs"
-#  }
-
-  #  listeners = {
-  #    ex-http-https-redirect = {
-  #      port     = 80
-  #      protocol = "HTTP"
-  #      redirect = {
-  #        port        = "443"
-  #        protocol    = "HTTPS"
-  #        status_code = "HTTP_301"
-  #      }
-  #    }
-  #    ex-https = {
-  #      port            = 443
-  #      protocol        = "HTTPS"
-  #      certificate_arn = "arn:aws:iam::123456789012:server-certificate/test_cert-123456789012"
-  #
-  #      forward = {
-  #        target_group_key = "ex-instance"
-  #      }
-  #    }
+  #  access_logs = {
+  #    bucket = "${local.name}-alb-logs"
   #  }
+
+  listeners = {
+    #      ex-http-https-redirect = {
+    #        port     = 80
+    #        protocol = "HTTP"
+    #        redirect = {
+    #          port        = "443"
+    #          protocol    = "HTTPS"
+    #          status_code = "HTTP_301"
+    #        }
+    #      }
+    #      ex-https = {
+    #        port            = 443
+    #        protocol        = "HTTPS"
+    #        certificate_arn = "arn:aws:iam::123456789012:server-certificate/test_cert-123456789012"
+    #
+    #        forward = {
+    #          target_group_key = "ex-instance"
+    #        }
+    #      }
+    forward-to-app = {
+      port     = 80
+      protocol = "HTTP"
+      forward  = {
+        target_group_key = "molotov-bar-api"
+      }
+    }
+  }
 
   target_groups = {
     molotov-bar-api = {
