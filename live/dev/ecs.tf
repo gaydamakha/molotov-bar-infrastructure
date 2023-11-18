@@ -34,9 +34,11 @@ module "ecs" {
       name                     = local.name
       # Task Definition
       requires_compatibilities = ["EC2"]
-
+      autoscaling_min_capacity = 0
+      autoscaling_max_capacity = 1
+      desired_count            = 0
       # Container definition(s)
-      container_definitions = {
+      container_definitions    = {
         main = {
           cpu           = 256
           memory        = 512
