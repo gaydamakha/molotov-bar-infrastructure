@@ -65,7 +65,7 @@ module "alb" {
       port                 = 80
       target_type          = "instance"
       deregistration_delay = 30
-      create_attachment    = true
+      create_attachment    = false
 
       health_check = {
         enabled             = true
