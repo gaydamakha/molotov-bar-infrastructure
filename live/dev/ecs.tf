@@ -38,9 +38,11 @@ module "ecs" {
       # Container definition(s)
       container_definitions = {
         main = {
-          cpu    = 256
-          memory = 512
+          cpu           = 256
+          memory        = 512
           image         = "${module.registry.repositories[local.name]}:latest"
+          essential     = true
+          network_mode  = "bridge"
           port_mappings = [
             {
               containerPort = 80
