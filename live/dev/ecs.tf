@@ -38,6 +38,7 @@ module "ecs" {
       autoscaling_max_capacity = 1
       desired_count            = 0
       launch_type              = "EC2"
+      network_mode             = "bridge"
       # Container definition(s)
       container_definitions    = {
         main = {
@@ -45,7 +46,6 @@ module "ecs" {
           memory        = 512
           image         = "${module.registry.repositories[local.name]}:latest"
           essential     = true
-          network_mode  = "bridge"
           port_mappings = [
             {
               containerPort = 80
