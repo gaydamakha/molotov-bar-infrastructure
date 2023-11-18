@@ -3,7 +3,7 @@ module "alb" {
   version = "9.2.0"
 
   name    = "my-alb"
-  vpc_id  = module.vpc.name
+  vpc_id  = module.vpc.vpc_id
   subnets = module.vpc.public_subnets
 
   # Security Group
