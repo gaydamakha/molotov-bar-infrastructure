@@ -37,6 +37,7 @@ module "ecs" {
       autoscaling_min_capacity = 0
       autoscaling_max_capacity = 1
       desired_count            = 0
+      launch_type              = "EC2"
       # Container definition(s)
       container_definitions    = {
         main = {
