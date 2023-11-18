@@ -7,6 +7,10 @@ module "ecs" {
   default_capacity_provider_use_fargate = false
   create_task_exec_iam_role             = true
   create_cloudwatch_log_group           = true
+  cluster_settings                      = {
+    name  = "containerInsights"
+    value = "disabled"
+  }
 
   # Capacity provider
   autoscaling_capacity_providers = {
