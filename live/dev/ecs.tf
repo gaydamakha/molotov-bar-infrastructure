@@ -43,6 +43,8 @@ module "ecs" {
       desired_count            = 0
       launch_type              = "EC2"
       network_mode             = "bridge"
+      cpu           = 256
+      memory        = 512
       # Container definition(s)
       container_definitions    = {
         main = {
