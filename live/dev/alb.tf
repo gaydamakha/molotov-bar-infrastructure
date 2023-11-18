@@ -33,9 +33,9 @@ module "alb" {
     }
   }
 
-  access_logs = {
-    bucket = "${local.name}-alb-logs"
-  }
+#  access_logs = {
+#    bucket = "${local.name}-alb-logs"
+#  }
 
   #  listeners = {
   #    ex-http-https-redirect = {
