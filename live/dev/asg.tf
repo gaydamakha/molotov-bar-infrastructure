@@ -35,7 +35,7 @@ module "asg" {
     CustomIamRole = "Yes"
   }
   iam_role_policies = {
-    #Not sure for this
+    AmazonEC2ContainerServiceforEC2Role = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
   }
 
