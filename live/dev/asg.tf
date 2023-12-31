@@ -5,7 +5,7 @@ data "aws_ssm_parameter" "ecs_optimized_ami_image_id" {
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "7.2.0"
-  create = local.enable
+  create  = local.enable
 
   # Autoscaling group
   name = "${local.name}-asg"
@@ -21,6 +21,7 @@ module "asg" {
   # Launch template
   launch_template_name        = "${local.name}-asg"
   launch_template_description = "Launch template for ${local.name}"
+  launch_template_version     = "$Latest"
 
   image_id          = data.aws_ssm_parameter.ecs_optimized_ami_image_id.value
   instance_type     = local.ec2_instance_type
@@ -36,7 +37,7 @@ module "asg" {
   }
   iam_role_policies = {
     AmazonEC2ContainerServiceforEC2Role = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
-    AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+    AmazonSSMManagedInstanceCore        = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
   }
 
   # This will ensure imdsv2 is enabled, required, and a single hop which is aws security
