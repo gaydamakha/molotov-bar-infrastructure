@@ -22,6 +22,7 @@ module "asg" {
   launch_template_name        = "${local.name}-asg"
   launch_template_description = "Launch template for ${local.name}"
   launch_template_version     = "$Latest"
+  user_data                   = base64encode(local.user_data)
 
   image_id          = data.aws_ssm_parameter.ecs_optimized_ami_image_id.value
   instance_type     = local.ec2_instance_type
