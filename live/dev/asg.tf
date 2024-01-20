@@ -51,6 +51,21 @@ module "asg" {
     http_put_response_hop_limit = 1
   }
 
+  network_interfaces = [
+    {
+      delete_on_termination = true
+      description           = "eth0"
+      device_index          = 0
+      security_groups       = [module.asg_sg.security_group_id]
+    },
+    {
+      delete_on_termination = true
+      description           = "eth1"
+      device_index          = 1
+      security_groups       = [module.asg_sg.security_group_id]
+    }
+  ]
+
   placement = {
     availability_zone = local.region
   }
@@ -66,4 +81,29 @@ module "asg" {
     Environment = local.env
     Project     = local.name
   }
+  autoscaling_group_tags = {
+    ReservedTargetInstance = "ECS-Instance${local.name}-cluster"
+    AmazonECSManaged       = true
+  }
+}
+
+module "asg_sg" {
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "~> 5.0"
+
+  name        = local.name
+  description = "A security group"
+  vpc_id      = module.vpc.vpc_id
+
+  computed_ingress_with_source_security_group_id = [
+    {
+      rule                     = "http-80-tcp"
+      source_security_group_id = module.alb.security_group_id
+    }
+  ]
+  number_of_computed_ingress_with_source_security_group_id = 1
+
+  egress_rules = ["all-all"]
+
+  tags = local.tags
 }
