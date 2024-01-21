@@ -6,6 +6,7 @@ module "ecs" {
   cluster_name                          = "${local.name}-cluster"
   default_capacity_provider_use_fargate = false
   create_task_exec_iam_role             = true
+  create_task_exec_policy               = true
   create_cloudwatch_log_group           = true
   cluster_settings                      = {
     name  = "containerInsights"
@@ -43,8 +44,8 @@ module "ecs" {
       desired_count            = 0
       launch_type              = "EC2"
       network_mode             = "bridge"
-      cpu           = 256
-      memory        = 512
+      cpu                      = 256
+      memory                   = 512
       # Container definition(s)
       container_definitions    = {
         main = {
