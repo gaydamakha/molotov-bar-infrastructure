@@ -39,14 +39,14 @@ module "vpc_endpoints" {
   }
 
   endpoints = {
-#    s3 = {
-#      service             = "s3"
-#      private_dns_enabled = true
-#      dns_options = {
-#        private_dns_only_for_inbound_resolver_endpoint = false
-#      }
-#      tags = { Name = "s3-vpc-endpoint" }
-#    },
+    s3 = {
+      service             = "s3"
+      private_dns_enabled = true
+      dns_options = {
+        private_dns_only_for_inbound_resolver_endpoint = false
+      }
+      tags = { Name = "s3-vpc-endpoint" }
+    },
 #    dynamodb = {
 #      service         = "dynamodb"
 #      service_type    = "Gateway"
@@ -75,12 +75,12 @@ module "vpc_endpoints" {
       subnet_ids          = module.vpc.private_subnets
       policy              = data.aws_iam_policy_document.generic_endpoint_policy.json
     },
-#    ecr_dkr = {
-#      service             = "ecr.dkr"
-#      private_dns_enabled = true
-#      subnet_ids          = module.vpc.private_subnets
-#      policy              = data.aws_iam_policy_document.generic_endpoint_policy.json
-#    },
+    ecr_dkr = {
+      service             = "ecr.dkr"
+      private_dns_enabled = true
+      subnet_ids          = module.vpc.private_subnets
+      policy              = data.aws_iam_policy_document.generic_endpoint_policy.json
+    },
 #    rds = {
 #      service             = "rds"
 #      private_dns_enabled = true
