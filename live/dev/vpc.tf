@@ -69,12 +69,12 @@ module "vpc_endpoints" {
       private_dns_enabled = true
       subnet_ids          = module.vpc.private_subnets
     },
-#    ecr_api = {
-#      service             = "ecr.api"
-#      private_dns_enabled = true
-#      subnet_ids          = module.vpc.private_subnets
-#      policy              = data.aws_iam_policy_document.generic_endpoint_policy.json
-#    },
+    ecr_api = {
+      service             = "ecr.api"
+      private_dns_enabled = true
+      subnet_ids          = module.vpc.private_subnets
+      policy              = data.aws_iam_policy_document.generic_endpoint_policy.json
+    },
 #    ecr_dkr = {
 #      service             = "ecr.dkr"
 #      private_dns_enabled = true
@@ -97,3 +97,23 @@ module "vpc_endpoints" {
 # resource "aws_eip" "molotov_bar_eip" {
 #   vpc = true
 # }
+
+data "aws_iam_policy_document" "generic_endpoint_policy" {
+  statement {
+    effect    = "Deny"
+    actions   = ["*"]
+    resources = ["*"]
+
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+
+    condition {
+      test     = "StringNotEquals"
+      variable = "aws:SourceVpc"
+
+      values = [module.vpc.vpc_id]
+    }
+  }
+}
