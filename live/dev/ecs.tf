@@ -62,13 +62,13 @@ module "ecs" {
         }
       }
 
-      load_balancer = {
-        service = {
-          target_group_arn = module.alb.target_groups[local.name].arn
-          container_name   = "main"
-          container_port   = 80
-        }
-      }
+#      load_balancer = {
+#        service = {
+#          target_group_arn = module.alb.target_groups[local.name].arn
+#          container_name   = "main"
+#          container_port   = 80
+#        }
+#      }
 
       subnet_ids           = module.vpc.private_subnets
       security_group_rules = {

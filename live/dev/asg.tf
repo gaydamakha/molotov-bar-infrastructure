@@ -30,7 +30,7 @@ module "asg" {
   enable_monitoring = true
 
   # IAM role & instance profile
-  create_iam_instance_profile = true
+  create_iam_instance_profile = local.enable
   iam_role_name               = "${local.name}-asg-role"
   iam_role_path               = "/ec2/"
   iam_role_description        = "IAM role for ${local.name}"
