@@ -6,6 +6,7 @@ module "alb" {
   name    = "${local.name}-alb"
   vpc_id  = module.vpc.vpc_id
   subnets = module.vpc.public_subnets
+  enable_deletion_protection = false
 
   # Security Group
   security_group_ingress_rules = {
