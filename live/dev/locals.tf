@@ -3,7 +3,7 @@ locals {
   region  = "eu-central-1"
   env     = "dev"
   name    = "molotov-bar-api"
-  enable  = true
+  enable  = false
   account = {
     master = "439575621641"
   }

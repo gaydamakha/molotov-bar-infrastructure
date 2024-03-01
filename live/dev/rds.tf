@@ -12,6 +12,7 @@ module "db_default" {
   engine_version       = "14.7"
   family               = "postgres14" # DB parameter group
   major_engine_version = "14"         # DB option group
+  create_db_instance   = local.enable
 
   multi_az = false
 
